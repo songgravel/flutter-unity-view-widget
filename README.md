@@ -241,6 +241,7 @@ If you want to use Unity for integrating Augmented Reality in your Flutter app, 
 
 Import [`FlutterUnityPackage.unitypackage`](https://github.com/juicycleff/flutter-unity-view-widget/tree/master/scripts/FlutterUnityPackage.unitypackage) to `unity/<Your Unity Project>`
 
+PS: ^3.0.0 version use [`FlutterUnityPackage-3.0.0.unitypackage`](https://github.com/juicycleff/flutter-unity-view-widget/tree/master/scripts/FlutterUnityPackage-3.0.0.unitypackage) instead of above package.
 <br />
 
 ### Vuforia
@@ -262,6 +263,12 @@ Thanks to [@PiotrxKolasinski](https://github.com/PiotrxKolasinski) for writing d
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: UnityDemoScreen()
+  ));
+}
 
 class UnityDemoScreen extends StatefulWidget {
 
@@ -289,7 +296,7 @@ class _UnityDemoScreenState extends State<UnityDemoScreen>{
           child: Container(
             color: colorYellow,
             child: UnityWidget(
-              onUnityViewCreated: onUnityCreated,
+              onUnityCreated: onUnityCreated,
             ),
           ),
         ),
@@ -346,7 +353,7 @@ class _MyAppState extends State<MyApp> {
           child: Stack(
             children: <Widget>[
               UnityWidget(
-                  onUnityViewCreated: onUnityCreated,
+                  onUnityCreated: onUnityCreated,
                   isARScene: true,
                   onUnityMessage: onUnityMessage,
                   onUnitySceneLoaded: onUnitySceneLoaded,
@@ -396,7 +403,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   // Communication from Unity to Flutter
-  void onUnityMessage(controller, message) {
+  void onUnityMessage(message) {
     print('Received message from unity: ${message.toString()}');
   }
 
@@ -406,15 +413,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   // Communication from Unity when new scene is loaded to Flutter
-  void onUnitySceneLoaded(
-    controller, {
-    int buildIndex,
-    bool isLoaded,
-    bool isValid,
-    String name,
-  }) {
-    print('Received scene loaded from unity: $name');
-    print('Received scene loaded from unity buildIndex: $buildIndex');
+  void onUnitySceneLoaded(SceneLoaded sceneInfo) {
+    print('Received scene loaded from unity: ${sceneInfo.name}');
+    print('Received scene loaded from unity buildIndex: ${sceneInfo.buildIndex}');
   }
 
 }
