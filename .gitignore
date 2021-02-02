@@ -22,7 +22,7 @@
 
 node_modules/
 ./package.json
-.idea/
+android/.idea/
 
 # Visual Studio Code related
 .vscode/

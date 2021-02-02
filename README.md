@@ -21,7 +21,7 @@ Also `3.0.0` release contains breaking changes in flutter and UnityPackage has b
 
 ```yaml
 dependencies:
-  flutter_unity_widget: ^3.0.1
+  flutter_unity_widget: ^3.0.3
 ```
 
 Now inside your Dart code you can import it.
@@ -106,7 +106,7 @@ IOS will export unity project to `ios/UnityLibrary`.
 <br />
 
  **Note**:
-    The build unity export script automatically sets things up for you for you, so you don't have to do anything for android.
+    The build unity export script automatically sets things up for you, so you don't have to do anything for android.
     But if you want to manually set it up, continue, else skip to iOS.
 
  **Android Platform Only (Manual Steps)**
@@ -438,6 +438,8 @@ class _MyAppState extends State<MyApp> {
 
 ## Known issues
  - Remember to disabled fullscreen in unity player settings to disable unity fullscreen.
+ - App crashes on screen exit and re-entry do this
+   > Build Setting - iOS - Other Settings - Configuration - Enable Custom Background Behaviors
 
 
 #### Sponsors
